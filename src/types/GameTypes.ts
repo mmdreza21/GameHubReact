@@ -16,12 +16,13 @@ export interface GameDTO {
   released: string; // ISO date string
   rating?: number;
   ratingsCount?: number;
-  metacritic?: number;
+  metacritic: number;
   tags: string[];
   backgroundImage?: string;
   createdAt: string; // ISO date string
   updatedAt: string; // ISO date string
   genres: GameGenreDTO[];
+  platform: string[];
 }
 export type FetchGamesResponse = PaginationResult<GameDTO>;
 
