@@ -3,6 +3,7 @@ import type { GameDTO } from "../types/GameTypes";
 import { Card, Heading, HStack, Image } from "@chakra-ui/react";
 import { PlatformIconsList } from "./PlatformIconList";
 import { MetacriticScore } from "./MetacriticScor";
+import { GameCardContainer } from "./GameCardContainer";
 
 interface IGameCardProps {
   game: GameDTO;
@@ -12,15 +13,9 @@ export default function GameCard({ game }: IGameCardProps) {
   const url = BASEURL;
   return (
     <>
-      <Card.Root
-        maxHeight="400px"
-        maxW="500px"
-        borderRadius={10}
-        overflow={"hidden"}
-        mb={10}
-        mx={5}
-      >
+      <Card.Root>
         <Image
+          loading="lazy"
           maxHeight="250px"
           aspectRatio={16 / 9}
           src={url + game.backgroundImage}
