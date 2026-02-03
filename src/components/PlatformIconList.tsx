@@ -15,7 +15,7 @@ export function PlatformIconsList({ platforms }: IPlatformIconsListProps) {
   return (
     <HStack>
       {platforms.map((p) => {
-        return <Icon as={iconMap[p]} color={"gray.500"} />;
+        return <Icon key={p} as={iconMap[p]} color={"gray.500"} />;
       })}
     </HStack>
   );

@@ -45,4 +45,9 @@ export interface GenreDTO {
   id: string;
   name: string;
   slug: string;
+  _count?: { games: number };
 }
+
+export type FetchGenresResponse = {
+  genres: GenreDTO[];
+};
