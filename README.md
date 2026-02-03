@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
+# 🎮 Game Hub – React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Game Hub is a modern frontend web application for discovering and browsing video games.  
+It is built with **React 19**, **TypeScript**, **Vite**, and **Chakra UI**, focusing on performance, clean UI, and scalable architecture.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- 🎯 Browse and explore video games
+- 🔍 Search games by name
+- 🧩 Filter by genre and platform
+- 📊 Sort games by popularity, rating, and more
+- ⭐ Visual rating indicators (emoji-based)
+- 🌗 Light / Dark mode support
+- ⚡ Fast development with Vite
+- 🧱 Skeleton loaders for better UX
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
+- React 19
+- TypeScript
+- Vite
+- Chakra UI v3
+- Framer Motion
+- Axios
+- PNPM
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📁 Project Structure (Overview)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### `src/`
+- **assets/** – Images, icons, logos, placeholders  
+- **components/** – Reusable UI components (Game cards, grids, filters, navbar, emoji ratings)
+- **components/ui/** – Chakra UI helpers (color mode utilities)
+- **hooks/** – Custom hooks for games and genres
+- **services/** – API client configuration
+- **types/** – Shared TypeScript interfaces
+- **utils/** – Helper utilities (images, icons)
+- **chakra.ts** – Chakra UI theme setup
+- **main.tsx** – Application entry point
+- **App.tsx** – Root component
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧠 Architecture Notes
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Data fetching handled via custom hooks
+- API logic centralized in the services layer
+- Strong type safety using shared types
+- Presentational components kept clean and reusable
+
+---
+
+## 🎨 UI & UX
+
+- Chakra UI for accessibility and consistency
+- Responsive layout
+- Skeleton loaders instead of spinners
+- Emoji-based rating indicators
+- Neutral placeholder images for missing assets
+
+---
+
+## 🧩 Backend Integration
+
+This frontend is designed to integrate with a backend service responsible for authentication, data persistence, and real-time features.
+
+### Backend Responsibilities
+
+- **Authentication**
+  - User login and registration
+  - Token-based access control
+
+- **Content APIs**
+  - Fetch game-related data
+  - Provide metadata (genres, platforms)
+  - Support sorting and searching
+
+- **Real-Time Features (Optional)**
+  - WebSocket connections for live updates or chat
+
+  ### API Communication
+
+- HTTP requests handled via **Axios**
+- Centralized API configuration:
+  - `src/services/api-client.ts`
+- Easily adaptable to REST or GraphQL backends
+
+### Backend Reference
+
+⚙️ **Backend Repository:**  
+https://github.com/mmdreza21/Nestjs_prisma_task_manager
+
