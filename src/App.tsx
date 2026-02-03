@@ -50,7 +50,7 @@ function App() {
         </GridItem>
         <GridItem area="main">
           <Box pl={5} pt={5} marginTop={2}>
-            <Heading as={"h1"} size={"lg"}>
+            <Heading as={"h1"} size={"xl"}>
               {gameQuery.genre?.name} Games
             </Heading>
           </Box>
