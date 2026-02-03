@@ -5,6 +5,7 @@ import { PlatformIconsList } from "./PlatformIconList";
 import { MetacriticScore } from "./MetacriticScor";
 import placeholder from "../assets/PlaceHolder.png";
 import { useState } from "react";
+import Emoji from "./Emoji";
 
 interface IGameCardProps {
   game: GameDTO;
@@ -23,7 +24,7 @@ export default function GameCard({ game }: IGameCardProps) {
 
   return (
     <Card.Root>
-      <Box position="relative" height="250px" overflow="hidden">
+      <Box height="250px" overflow="hidden">
         {isLoading && (
           <Skeleton position="absolute" top="0" left="0" right="0" bottom="0" />
         )}
@@ -44,11 +45,12 @@ export default function GameCard({ game }: IGameCardProps) {
         />
       </Box>
       <Card.Body>
-        <Heading fontSize="2xl">{game.name}</Heading>
-        <HStack justifyContent="space-between" mt={3}>
+        <HStack justifyContent="space-between" mb={3}>
           <PlatformIconsList platforms={game.platform} />
           <MetacriticScore metacritic={game.metacritic} />
         </HStack>
+        <Heading fontSize="2xl">{game.name}</Heading>
+        <Emoji rating={game.rating!} />
       </Card.Body>
     </Card.Root>
   );

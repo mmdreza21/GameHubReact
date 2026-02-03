@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Card } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 
 interface Props {
@@ -7,15 +7,17 @@ interface Props {
 
 export function GameCardContainer({ children }: Props) {
   return (
-    <Box
+    <Card.Root
       maxHeight="400px"
       maxW="500px"
-      borderRadius={10}
+      borderRadius={16}
       overflow={"hidden"}
       mb={10}
       mx={5}
+      variant={"elevated"}
+      border={"hidden"}
     >
       {children}
-    </Box>
+    </Card.Root>
   );
 }
