@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import apiClient from "../Services/api-Client";
+import axiosInstance from "../Services/axiosInstance";
 import type { PaginationResult } from "../types/GameTypes";
 import { CanceledError, type AxiosRequestConfig } from "axios";
 
@@ -16,7 +16,7 @@ const useData = <T>(
     () => {
       const controller = new AbortController();
       setLoading(true);
-      apiClient
+      axiosInstance
         .get<PaginationResult<T>>(endpoint, {
           ...requestConfig,
           signal: controller.signal,

@@ -1,4 +1,4 @@
-import { BASEURL } from "../Services/api-Client";
+import { BASEURL } from "../Services/axiosInstance";
 import type { GameDTO } from "../types/GameTypes";
 import { Card, Heading, HStack, Image, Skeleton, Box } from "@chakra-ui/react";
 import { PlatformIconsList } from "./PlatformIconList";
