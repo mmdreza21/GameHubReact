@@ -1,14 +1,14 @@
-import { Box, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/Navbar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
-import type { GenreDTO } from "./types/GameTypes";
 import type { SortOrder } from "./components/GameSortSelectors";
 import GameSortSelector from "./components/GameSortSelectors";
+import GameHeading from "./components/GameHeading";
 
 export interface GameQuery {
-  genre: GenreDTO | null;
+  genreId: string | null;
   searchText: string;
   sortBy: string;
   sortOrder: SortOrder;
@@ -44,16 +44,14 @@ function App() {
           area="aside"
         >
           <GenreList
-            selectedGenre={gameQuery.genre}
-            onSelectedGenre={(e) => setGameQuery({ ...gameQuery, genre: e })}
+            selectedGenreId={gameQuery.genreId}
+            onSelectedGenre={(e) =>
+              setGameQuery({ ...gameQuery, genreId: e?.id || null })
+            }
           />
         </GridItem>
         <GridItem area="main">
-          <Box pl={5} pt={5} marginTop={2}>
-            <Heading as={"h1"} size={"xl"}>
-              {gameQuery.genre?.name} Games
-            </Heading>
-          </Box>
+          <GameHeading genreId={gameQuery.genreId} />
 
           <GameSortSelector
             sortBy={gameQuery.sortBy}

@@ -19,10 +19,10 @@ import { useState } from "react";
 
 interface Props {
   onSelectedGenre: (genre: GenreDTO | null) => void;
-  selectedGenre: GenreDTO | null;
+  selectedGenreId: string | null;
 }
 
-function GenreList({ onSelectedGenre, selectedGenre }: Props) {
+function GenreList({ onSelectedGenre, selectedGenreId }: Props) {
   const { data: genres, isLoading: loading } = useGenres();
   const [hoveredGenre, setHoveredGenre] = useState<string | null>(null);
 
@@ -57,7 +57,6 @@ function GenreList({ onSelectedGenre, selectedGenre }: Props) {
       </Text>
 
       <List.Root variant="plain">
-        {/* All Genres Button */}
         <ListItem>
           <Card.Root
             cursor="pointer"
@@ -79,19 +78,17 @@ function GenreList({ onSelectedGenre, selectedGenre }: Props) {
                 p={2}
                 borderRadius="md"
                 bg="transparent"
-                color={selectedGenre === null ? "purple.600" : "gray.100"}
+                color={selectedGenreId === null ? "purple.600" : "gray.100"}
               >
                 <Icon as={FaGamepad} boxSize={5} />
               </Box>
               <VStack align="start" m={0} flex="1">
-                <Text fontWeight={selectedGenre === null ? "bold" : "semibold"}>
+                <Text
+                  fontWeight={selectedGenreId === null ? "bold" : "semibold"}
+                >
                   All
                 </Text>
               </VStack>
-              <Badge variant="subtle" colorScheme="blue">
-                {genres?.reduce((acc, g) => acc + (g._count?.games || 0), 0) ||
-                  0}
-              </Badge>
             </HStack>
           </Card.Root>
         </ListItem>
@@ -99,7 +96,7 @@ function GenreList({ onSelectedGenre, selectedGenre }: Props) {
         {/* Genre Items */}
         {genres?.map((genre) => {
           const GenreIcon = getSpecificIconForGenre(genre.name);
-          const isSelected = selectedGenre?.id === genre.id;
+          const isSelected = selectedGenreId === genre.id;
           const isHovered = hoveredGenre === genre.id;
 
           return (
