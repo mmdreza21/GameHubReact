@@ -1,4 +1,4 @@
-import { Box, Card } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 
 interface Props {

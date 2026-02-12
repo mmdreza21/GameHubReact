@@ -74,7 +74,7 @@ export const genreIcons = [
 ];
 
 // Function to get a consistent icon for a genre based on its ID
-export const getIconForGenre = (genreId: string, genreName: string) => {
+export const getIconForGenre = (genreId: string) => {
   // Create a hash from genre ID to get consistent icon
   const hash = Array.from(genreId).reduce(
     (acc, char) => acc + char.charCodeAt(0),

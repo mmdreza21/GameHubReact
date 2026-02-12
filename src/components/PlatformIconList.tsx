@@ -1,4 +1,4 @@
-import { HStack, Icon, Text } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import type { IconType } from "react-icons";
 import { FaWindows, FaPlaystation } from "react-icons/fa";
 

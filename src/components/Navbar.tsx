@@ -1,4 +1,4 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { HStack, Image } from "@chakra-ui/react";
 
 import logoDark from "../assets/logo.png";
 import logoLight from "../assets/Logo_Light.png";

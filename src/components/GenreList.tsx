@@ -1,5 +1,4 @@
 import {
-  Button,
   HStack,
   Icon,
   List,
@@ -24,20 +23,19 @@ interface Props {
 }
 
 function GenreList({ onSelectedGenre, selectedGenre }: Props) {
-  const { data: genres, loading } = useGenres();
+  const { data: genres, isLoading: loading } = useGenres();
   const [hoveredGenre, setHoveredGenre] = useState<string | null>(null);
 
   const handleClick = (genre: GenreDTO | null) => {
     onSelectedGenre(genre);
   };
 
-  // If loading, show skeleton
   if (loading) {
     return (
       <Box p={4}>
         <VStack align="stretch" m={3}>
           {[1, 2, 3, 4, 5].map((i) => (
-            <Card.Root key={i} variant="outline" p={3}>
+            <Card.Root minWidth={160} key={i} variant="outline" p={3}>
               <Flex align="center" gap={3}>
                 <Spinner size="sm" />
                 <Box flex="1">
