@@ -1,22 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import type { GameQuery } from "../App";
 import type { GameDTO, PaginationResult } from "../types/GameTypes";
-import apiClient from "../Services/api-client";
+import APIClient from "../Services/api-client";
+
+const apiClient = new APIClient<PaginationResult<GameDTO>>("/games");
 
 const useGames = (gameQuery: GameQuery) =>
-  useQuery<PaginationResult<GameDTO>, Error>({
+  useInfiniteQuery<PaginationResult<GameDTO>, Error>({
     queryKey: ["games", gameQuery],
-    queryFn: () =>
-      apiClient
-        .get<PaginationResult<GameDTO>>("/games", {
-          params: {
-            genres: gameQuery.genre?.id,
-            sortBy: gameQuery.sortBy,
-            sortOrder: gameQuery.sortOrder,
-            search: gameQuery.searchText,
-          },
-        })
-        .then((res) => res.data),
+    queryFn: ({ pageParam = 1 }) =>
+      apiClient.getAll({
+        params: {
+          genres: gameQuery.genre?.id,
+          sortBy: gameQuery.sortBy,
+          sortOrder: gameQuery.sortOrder,
+          search: gameQuery.searchText,
+          page: pageParam,
+        },
+      }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length + 1;
+      return nextPage <= lastPage.meta.totalPages ? nextPage : undefined;
+    },
   });
 
 export default useGames;
