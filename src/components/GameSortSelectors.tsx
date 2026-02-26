@@ -1,15 +1,9 @@
 "use client";
 
 import { HStack, Portal, Select, createListCollection } from "@chakra-ui/react";
+import useGameQueryStore from "../store/gameQueryStore";
 
 export type SortOrder = "asc" | "desc";
-
-interface Props {
-  sortBy: string;
-  sortOrder: SortOrder;
-  onSortByChange: (value: string) => void;
-  onSortOrderChange: (value: SortOrder) => void;
-}
 
 const sortByCollection = createListCollection({
   items: [
@@ -28,12 +22,11 @@ const sortOrderCollection = createListCollection({
   ],
 });
 
-function GameSortSelector({
-  sortBy,
-  sortOrder,
-  onSortByChange,
-  onSortOrderChange,
-}: Props) {
+function GameSortSelector() {
+  const sortBy = useGameQueryStore((state) => state.sortBy);
+  const sortOrder = useGameQueryStore((state) => state.sortOrder);
+  const onSortByChange = useGameQueryStore((state) => state.setSortBy);
+  const onSortOrderChange = useGameQueryStore((state) => state.setSortOrder);
   return (
     <HStack padding="10px" m={4}>
       <Select.Root

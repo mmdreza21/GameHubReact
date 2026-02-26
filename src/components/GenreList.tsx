@@ -16,18 +16,16 @@ import { FaGamepad } from "react-icons/fa";
 import { getSpecificIconForGenre } from "../utils/genreIcons";
 import type { GenreDTO } from "../types/GameTypes";
 import { useState } from "react";
+import useGameQueryStore from "../store/gameQueryStore";
 
-interface Props {
-  onSelectedGenre: (genre: GenreDTO | null) => void;
-  selectedGenreId: string | null;
-}
-
-function GenreList({ onSelectedGenre, selectedGenreId }: Props) {
+function GenreList() {
   const { data: genres, isLoading: loading } = useGenres();
   const [hoveredGenre, setHoveredGenre] = useState<string | null>(null);
 
+  const { genreId: selectedGenreId, setGenreId } = useGameQueryStore();
+
   const handleClick = (genre: GenreDTO | null) => {
-    onSelectedGenre(genre);
+    setGenreId(genre?.id || null);
   };
 
   if (loading) {

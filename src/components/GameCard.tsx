@@ -32,7 +32,7 @@ export default function GameCard({ game }: IGameCardProps) {
           loading="lazy"
           height="100%"
           width="100%"
-          objectFit="contain"
+          objectFit="cover"
           src={displaySrc}
           alt={game.name}
           onError={() => {

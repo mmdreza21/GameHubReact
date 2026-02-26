@@ -1,18 +1,16 @@
 import useGenres from "../hooks/useGenres";
 import { Box, Heading } from "@chakra-ui/react";
+import useGameQueryStore from "../store/gameQueryStore";
 
-interface Props {
-  genreId: string | null;
-}
-
-function GameHeading({ genreId }: Props) {
+function GameHeading() {
+  const selectedGenreId = useGameQueryStore((state) => state.genreId);
   const { data: genres } = useGenres();
 
   return (
     <Box pl={5} pt={5} marginTop={2}>
       <Heading as={"h1"} size={"xl"}>
-        {genreId
-          ? genres?.find((g) => g.id === genreId)?.name + " Games"
+        {selectedGenreId
+          ? genres?.find((g) => g.id === selectedGenreId)?.name + " Games"
           : "All Games"}
       </Heading>
     </Box>

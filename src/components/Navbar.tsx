@@ -5,10 +5,7 @@ import logoLight from "../assets/Logo_Light.png";
 import { ColorModeButton, useColorMode } from "./ui/color-mode";
 import SearchInput from "./SearchInput";
 
-interface Props {
-  onsearch: (searchText: string) => void;
-}
-function NavBar({ onsearch }: Props) {
+function NavBar() {
   const theme = useColorMode();
   return (
     <HStack
@@ -23,7 +20,7 @@ function NavBar({ onsearch }: Props) {
         className="ma-2"
         src={theme.colorMode === "dark" ? logoDark : logoLight}
       />
-      <SearchInput onsearch={(text) => onsearch(text)} />
+      <SearchInput />
       <ColorModeButton />
     </HStack>
   );
